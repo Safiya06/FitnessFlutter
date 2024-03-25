@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:fitness/models/category_model.dart';
 import 'package:fitness/models/diet_model.dart';
 import 'package:fitness/models/popular_model.dart';
@@ -57,6 +59,19 @@ class HomePage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Container(
                     height: 100,
+                    decoration: BoxDecoration(
+                      color: popularDiets[index].boxIsSelected ?
+                       Colors.white : Colors.transparent,
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: popularDiets[index].boxIsSelected ? [
+                        BoxShadow(
+                          color: const Color(0xff1D1617).withOpacity(0.07),
+                          offset: const Offset(0, 10),
+                          blurRadius: 40,
+                          spreadRadius: 0
+                        )
+                      ] : []
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -96,19 +111,6 @@ class HomePage extends StatelessWidget {
                           ),
                         )
                       ],
-                    ),
-                    decoration: BoxDecoration(
-                      color: popularDiets[index].boxIsSelected ?
-                       Colors.white : Colors.transparent,
-                      borderRadius: BorderRadius.circular(16),
-                      boxShadow: popularDiets[index].boxIsSelected ? [
-                        BoxShadow(
-                          color: const Color(0xff1D1617).withOpacity(0.07),
-                          offset: const Offset(0, 10),
-                          blurRadius: 40,
-                          spreadRadius: 0
-                        )
-                      ] : []
                     ),
                   );
                 },
@@ -174,6 +176,15 @@ class HomePage extends StatelessWidget {
                         Container(
                           height: 45,
                           width: 130,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                diets[index].viewIsSelected ? const Color(0xff9DCEFF) : Colors.transparent,
+                                diets[index].viewIsSelected ? const Color(0xff92A3FD) : Colors.transparent
+                              ]
+                            ),
+                            borderRadius: BorderRadius.circular(50)
+                          ),
                           child: Center(
                             child: Text(
                               'View',
@@ -183,15 +194,6 @@ class HomePage extends StatelessWidget {
                                 fontSize: 14
                               ),
                             ),
-                          ),
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                diets[index].viewIsSelected ? const Color(0xff9DCEFF) : Colors.transparent,
-                                diets[index].viewIsSelected ? const Color(0xff92A3FD) : Colors.transparent
-                              ]
-                            ),
-                            borderRadius: BorderRadius.circular(50)
                           ),
                         )
                       ],
@@ -324,14 +326,13 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-                borderSide: BorderSide.none
+              borderRadius: BorderRadius.circular(15),
+              borderSide: BorderSide.none
               )
             ),
           ),
         );
   }
-
   AppBar appBar() {
     return AppBar(
       title: const Text(
@@ -341,14 +342,12 @@ class HomePage extends StatelessWidget {
           fontSize: 18,
           fontWeight: FontWeight.bold
         ),
-      ),
+        ),
       backgroundColor: Colors.white,
       elevation: 0.0,
       centerTitle: true,
       leading: GestureDetector(
-        onTap: () {
-          
-        },
+        onTap: () {},
         child: Container(
           margin: const EdgeInsets.all(10),
           alignment: Alignment.center,
@@ -377,7 +376,7 @@ class HomePage extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               color: const Color(0xffF7F8F8),
-              borderRadius: BorderRadius.circular(10)
+              borderRadius: BorderRadius.circular(10),
             ),
           ),
         ),
